@@ -19,4 +19,5 @@ A method is a function of an object. A function is not always a method
 
 Setting and getting properties of an object. Either "." or [name of property]
   More common now to use "." (Dot notation)
-  
+
+echo "# git_demo" >> README.md      // >> adds to file, > overwrites what's in file already
