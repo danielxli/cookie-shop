@@ -89,7 +89,7 @@ var alki = {
 
 alki.customersPerHour = function (min, max) {
   this.minCustomers = min;
-  this.maxCustomers = max; 
+  this.maxCustomers = max;
   var tempArray = [];
   for (i = 0; i < alki.hoursOpen.length ; i++) {
     tempArray.push(Math.floor(Math.random()*(max-min))+min);
@@ -124,12 +124,19 @@ alki.cookiesPerCustomer = 2.6;
 
 function createShopEl(shopName) {
   var s = shopName;
+  var runningCustomerTotal = 0;
+  var runningCookieTotal = 0;
   var ulEl = document.createElement('ul');
   for (hour in s.hoursOpen) {
     var liEl = document.createElement('li');
-    liEl.textContent = s.hoursOpen[hour] + ": " + s.hourlyCustomers[hour] + " customers and " + Math.floor(s.hourlyCustomers[hour]*s.cookiesPerCustomer) + " cookies";
+    liEl.textContent = s.hoursOpen[hour] + ": " + s.hourlyCustomers[hour] + " customers and " + Math.floor(s.hourlyCustomers[hour] * s.cookiesPerCustomer) + " cookies";
+    runningCustomerTotal += s.hourlyCustomers[hour];
+    runningCookieTotal += Math.floor(s.hourlyCustomers[hour] * s.cookiesPerCustomer)
     ulEl.appendChild(liEl);
   }
+  var totalLiEl = document.createElement('li');
+  totalLiEl.textContent = "Total: " + runningCustomerTotal + " customers and " + runningCookieTotal +  " cookies";
+  ulEl.appendChild(totalLiEl);
   // sectionEl.appendChild(ulEl);
   return ulEl;
 }
@@ -144,3 +151,6 @@ function createShopList(shopArray) {
   }
   sectionEl.appendChild(ulEl);
 }
+
+
+createShopList(shops)
