@@ -1,143 +1,49 @@
-var pikePlace = {
-  shopId: 'Pike Place',
-  minCustomers: 0,
-  maxCustomers: 1,
-  cookiesPerCustomer: 2,
-  hourlyCustomers: [],
-  hoursOpen: ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
-};
+var shops = [];
+var shopNames = ['Pike Place', 'Sea Tac Airport', 'Southcenter', 'Bellevue Square', 'Alki'];
+var minCustomersArray = [17, 6, 11, 20, 3];
+var maxCustomersArray = [88, 24, 38, 48, 24];
+var cookiesPerCustomerArray = [5.2, 1.2, 1.9, 3.3, 2.6];
+var hoursOpen = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm'];
 
-pikePlace.customersPerHour = function (min, max) {
-  this.minCustomers = min;
-  this.maxCustomers = max;
+function Shop(shopName, minCustomers, maxCustomers, cookiesPerCustomer) {
+  this.shopName = shopName;
+  this.minCustomers = minCustomers;
+  this.maxCustomers = maxCustomers;
+  this.cookiesPerCustomer = cookiesPerCustomer;
+  this.hourlyCustomers = [];
+  this.hoursOpen = hoursOpen;
+  shops.push(this);
+}
+Shop.prototype.customersPerHour = function() {
   var tempArray = [];
-  for (i = 0; i < pikePlace.hoursOpen.length ; i++) {
-    tempArray.push(Math.floor(Math.random()*(max-min))+min);
+  for (i = 0; i < this.hoursOpen.length ; i++) {
+    tempArray.push(Math.floor(Math.random()*(this.maxCustomers-this.minCustomers))+this.minCustomers);
   }
-  pikePlace.hourlyCustomers = tempArray;
-  console.log(pikePlace.hourlyCustomers);
+  this.hourlyCustomers = tempArray;
 };
 
-var seaTac = {
-  shopId: 'Sea Tac Airport',
-  minCustomers: 0,
-  maxCustomers: 1,
-  cookiesPerCustomer: 2,
-  hourlyCustomers: [],
-  hoursOpen: ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
+for (s in shopNames) {
+  new Shop(shopNames[s], minCustomersArray[s], maxCustomersArray[s], cookiesPerCustomerArray[s]);
+  shops[s].customersPerHour()
 };
 
-seaTac.customersPerHour = function (min, max) {
-  this.minCustomers = min;
-  this.maxCustomers = max;
-  var tempArray = [];
-  for (i = 0; i < seaTac.hoursOpen.length ; i++) {
-    tempArray.push(Math.floor(Math.random()*(max-min))+min);
-  }
-  seaTac.hourlyCustomers = tempArray;
-  console.log(seaTac.hourlyCustomers);
-};
-
-var southcenter = {
-  shopId: 'Southcenter',
-  minCustomers: 0,
-  maxCustomers: 1,
-  cookiesPerCustomer: 2,
-  hourlyCustomers: [],
-  hoursOpen: ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
-};
-
-southcenter.customersPerHour = function (min, max) {
-  this.minCustomers = min;
-  this.maxCustomers = max;
-  var tempArray = [];
-  for (i = 0; i < southcenter.hoursOpen.length ; i++) {
-    tempArray.push(Math.floor(Math.random()*(max-min))+min);
-  }
-  southcenter.hourlyCustomers = tempArray;
-  console.log(southcenter.hourlyCustomers);
-};
-
-var bellevueSquare = {
-  shopId: 'Bellevue Square',
-  minCustomers: 0,
-  maxCustomers: 1,
-  cookiesPerCustomer: 2,
-  hourlyCustomers: [],
-  hoursOpen: ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
-};
-
-bellevueSquare.customersPerHour = function (min, max) {
-  this.minCustomers = min;
-  this.maxCustomers = max;
-  var tempArray = [];
-  for (i = 0; i < bellevueSquare.hoursOpen.length ; i++) {
-    tempArray.push(Math.floor(Math.random()*(max-min))+min);
-  }
-  bellevueSquare.hourlyCustomers = tempArray;
-  console.log(bellevueSquare.hourlyCustomers);
-};
-
-var alki = {
-  shopId: 'Alki',
-  minCustomers: 0,
-  maxCustomers: 1,
-  cookiesPerCustomer: 2,
-  hourlyCustomers: [],
-  hoursOpen: ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
-};
-
-alki.customersPerHour = function (min, max) {
-  this.minCustomers = min;
-  this.maxCustomers = max;
-  var tempArray = [];
-  for (i = 0; i < alki.hoursOpen.length ; i++) {
-    tempArray.push(Math.floor(Math.random()*(max-min))+min);
-  }
-  alki.hourlyCustomers = tempArray;
-  console.log(alki.hourlyCustomers);
-};
-
-
-
-
-
-
-
-// CODE STARTS HERE
 
 var sectionEl = document.getElementById('store-data');
-var shops = [pikePlace, seaTac, southcenter, bellevueSquare, alki];
-
-pikePlace.customersPerHour(17, 88);
-seaTac.customersPerHour(6, 24);
-southcenter.customersPerHour(11, 38);
-bellevueSquare.customersPerHour(20, 48);
-alki.customersPerHour(3, 24);
-
-pikePlace.cookiesPerCustomer = 5.2;
-seaTac.cookiesPerCustomer = 1.2;
-southcenter.cookiesPerCustomer = 1.9;
-bellevueSquare.cookiesPerCustomer = 3.3;
-alki.cookiesPerCustomer = 2.6;
-
 
 function createShopEl(shopName) {
-  var s = shopName;
   var runningCustomerTotal = 0;
   var runningCookieTotal = 0;
   var ulEl = document.createElement('ul');
-  for (hour in s.hoursOpen) {
+  for (hour in shopName.hoursOpen) {
     var liEl = document.createElement('li');
-    liEl.textContent = s.hoursOpen[hour] + ": " + s.hourlyCustomers[hour] + " customers and " + Math.floor(s.hourlyCustomers[hour] * s.cookiesPerCustomer) + " cookies";
-    runningCustomerTotal += s.hourlyCustomers[hour];
-    runningCookieTotal += Math.floor(s.hourlyCustomers[hour] * s.cookiesPerCustomer)
+    liEl.textContent = shopName.hoursOpen[hour] + ": " + shopName.hourlyCustomers[hour] + " customers and " + Math.floor(shopName.hourlyCustomers[hour] * shopName.cookiesPerCustomer) + " cookies";
+    runningCustomerTotal += shopName.hourlyCustomers[hour];
+    runningCookieTotal += Math.floor(shopName.hourlyCustomers[hour] * shopName.cookiesPerCustomer)
     ulEl.appendChild(liEl);
   }
   var totalLiEl = document.createElement('li');
   totalLiEl.textContent = "Total: " + runningCustomerTotal + " customers and " + runningCookieTotal +  " cookies";
   ulEl.appendChild(totalLiEl);
-  // sectionEl.appendChild(ulEl);
   return ulEl;
 }
 
@@ -145,7 +51,7 @@ function createShopList(shopArray) {
   var ulEl = document.createElement('ul');
   for (sho in shopArray) {
     var liEl = document.createElement('li');
-    liEl.textContent = shopArray[sho].shopId + " | Min customers per hour: " + shopArray[sho].minCustomers + " | Max customers per hour: " + shopArray[sho].maxCustomers + " | Average cookies per customer: " + shopArray[sho].cookiesPerCustomer;
+    liEl.textContent = shopArray[sho].shopName + " | Min customers per hour: " + shopArray[sho].minCustomers + " | Max customers per hour: " + shopArray[sho].maxCustomers + " | Average cookies per customer: " + shopArray[sho].cookiesPerCustomer;
     liEl.appendChild(createShopEl(shopArray[sho]));
     ulEl.appendChild(liEl);
   }
@@ -153,4 +59,22 @@ function createShopList(shopArray) {
 }
 
 
-createShopList(shops)
+createShopList(shops);
+
+
+function addStore() {
+  var sName = document.getElementsByName('shopNameInput')[0].value;
+  var minCust = parseInt(document.getElementsByName('minCustomersPerHourInput')[0].value);
+  var maxCust = parseInt(document.getElementsByName('maxCustomersPerHourInput')[0].value);
+  var cookiesPer = parseInt(document.getElementsByName('averageCookiesPerCustomerInput')[0].value);
+  new Shop(sName, minCust, maxCust, cookiesPer);
+  shops[shops.length-1].customersPerHour();
+  sectionEl.textContent = '';
+  createShopEl(shops[shops.length-1]);
+  createShopList(shops);
+};
+
+
+
+var buttonEl = document.getElementById('addStoreButton');
+buttonEl.addEventListener('click', addStore, false)

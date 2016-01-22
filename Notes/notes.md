@@ -21,3 +21,24 @@ Setting and getting properties of an object. Either "." or [name of property]
   More common now to use "." (Dot notation)
 
 echo "# git_demo" >> README.md      // >> adds to file, > overwrites what's in file already
+
+HTML
+  Use <code> for having stuff appear as 'code'
+
+Ways to do text formatting
+  px, em, rem
+  em = 1 unit of font in base font size. browser default is 16px
+  1em = 16px
+  rem - whatever value is being inherited from parent
+
+
+DOM Tree
+  1. document node - is an object! we have been using it. all of the methods (createElement, geti, etc.) are part of the document node
+  2. element nodes - tags we are writing in html (e.g., body, div, h1, etc.)
+    3. attribute node - class, id, type, source, href, hidden
+    4. text node - text
+
+
+
+
+Constructor Functions

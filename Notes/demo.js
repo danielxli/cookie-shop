@@ -68,3 +68,55 @@ for (month in months) {
 }
 
 sectionEl.appendChild(ulEl);
+
+
+var people = [];
+
+function Person(name, height, hair, age) { //capital denotes it's a constructor
+  this.title = name;
+  this.height = height;
+  this.hair = hair;
+  this.age = age;
+
+  people.push(this);
+};
+
+Person.prototype.sayHello = function(who) {
+  console.log('Hello ' + who + '!');
+};
+
+Person.prototype.toes = 8;
+
+//prototyping inheritance this way. it is only stored in code 1x. (not once per time you instantiate)
+
+var sam = new Person('Sam', 72, 'brown', 26); //instantiation. instantiating a new instance of the Person object
+
+var names = [];
+var heights = [];
+var hairColor = [];
+var ages = [];
+
+for (var i = 0; i < names.length; i++) {
+  new Person(i,i,i,i)
+}
+
+
+
+// var sam = {
+//   height: 72,
+//   hair: 'brown',
+//   age: 26,
+//   name: 'Sam'
+// };
+var erin = {
+  height: 68,
+  hair: 'brown',
+  age: 32,
+  name: 'Erin'
+};
+var daniel = {
+  height: 47,
+  hair: 'brown',
+  age: 27,
+  name: 'Daniel'
+};
