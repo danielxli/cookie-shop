@@ -125,7 +125,6 @@ function addTableRow(parentElementId, rowTitle, arrayOfData) {
     tdEl.textContent = arrayOfData[i];
     rowEl.appendChild(tdEl);
     }
-  console.log(rowEl);
   tableEl.appendChild(rowEl);
 }
 
