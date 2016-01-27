@@ -48,7 +48,7 @@ var beans = function() {
 // target.appendChild(content)
 
 
-
+// LIST VERSION
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var weeks = [1, 2, 3, 4];
 var sectionEl = document.getElementById('myList');
@@ -66,8 +66,21 @@ for (month in months) {
   liEl.appendChild(nestedUlEl);
   ulEl.appendChild(liEl);
 }
-
 sectionEl.appendChild(ulEl);
+
+// TABLE VERSION
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var weeks = [1, 2, 3, 4];
+var sectionEl = document.getElementById('myList');
+var trEl = document.createElement('tr');
+
+for (month in months) {
+  var tdEl = document.createElement('td');
+  tdEl.textContent = months[month];
+  trEl.appendChild(tdEl);
+}
+sectionEl.appendChild(trEl);
+//
 
 
 var people = [];
@@ -120,3 +133,44 @@ var daniel = {
   age: 27,
   name: 'Daniel'
 };
+
+
+
+
+
+
+
+
+
+var h1El = document.getElementById('my-list')
+h1El.addEventListener('click', function () {console.log('helloworld')});
+var logMeSomeStuff = function() {console.log('Some Stuff')};
+h1El.addEventListener('click', logMeSomeStuff);
+//Two event listeners on click!
+
+// var btnEl = document.getElementById('submit');
+// btnEl.addEventListener('click', function () {
+//   console.log("Helllllooooooooo there!");
+//   h1El.style.color = "#"+((1<<24)*Math.random()|0).toString(16);
+// })
+
+document.getElementById('submit').addEventListener('click', function() {console.log("hey, hey, hey")});
+
+var btnEl = document.getElementById('submit');
+var nameInput = document.getElementById('name');
+var formEl = document.getElementById('user-info');
+
+
+// btnEl.addEventListener('click', function() {
+//   var getName = nameInput.value;
+//   console.log(getName);
+// });
+// //oh no! it refreshed the page!!! when you use a button and event listner, they have a natural property on click to refresh the page
+
+
+formEl.addEventListener('submit', function(event) {
+  event.preventDefault();
+  // var getName = nameInput.value;
+  console.log(event.target.name.value);
+  event.target.name.value = null;
+});
