@@ -58,9 +58,7 @@ function createShopList(shopArray) {
   sectionEl.appendChild(ulEl);
 }
 
-
 createShopList(shops);
-
 
 function addStore() {
   var sName = document.getElementsByName('shopNameInput')[0].value;
@@ -75,6 +73,48 @@ function addStore() {
 };
 
 
+//prepare data for table function
+var arrayOfSales = []
+for (shop in shops) {
+  arrayOfSales.push(shops[shop].hourlyCustomers);
+}
+
+createTable(hoursOpen,shopNames,arrayOfSales);
+
 
 var buttonEl = document.getElementById('addStoreButton');
-buttonEl.addEventListener('click', addStore, false)
+buttonEl.addEventListener('click', addStore, false);
+
+
+function createTable(columnTitleArray, rowTitleArray, arrayOfRowData) {
+  var tableEl = document.createElement('table');
+  if (columnTitleArray.length > 0) {
+    var rowEl = document.createElement('tr');
+    var thEl = document.createElement('th');
+    thEl.textContent = rowTitleArray[i];
+    rowEl.appendChild(thEl);
+    for (var k = 0; k < columnTitleArray.length; k++) {
+      var thEl = document.createElement('th');
+      thEl.textContent = columnTitleArray[k];
+      rowEl.appendChild(thEl);
+    }
+  }
+  tableEl.appendChild(rowEl);
+  for (var i = 0; i < arrayOfRowData.length; i++) {
+    var rowEl = document.createElement('tr');
+
+    if (rowTitleArray.length > 0 ) {
+        var thEl = document.createElement('th');
+        thEl.textContent = rowTitleArray[i];
+        rowEl.appendChild(thEl);
+    }
+    for (var j = 0; j < arrayOfRowData[i].length; j++) {
+      var tdEl = document.createElement('td');
+      tdEl.textContent = arrayOfRowData[i][j];
+      rowEl.appendChild(tdEl);
+    }
+    tableEl.appendChild(rowEl);
+  }
+  sectionEl.appendChild(tableEl);
+  return tableEl;
+}
