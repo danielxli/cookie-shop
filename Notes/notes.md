@@ -51,3 +51,12 @@ h1El.addEventListener('click', function () {console.log('helloworld')})
 
 Box Model
   Content, padding, border, margin
+
+
+
+### Grid System
+we have a box that is a web page
+960px is standard width for a desktop view
+
+Column widths
+Gutters between columns

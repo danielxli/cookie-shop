@@ -3,19 +3,32 @@
   <head>
     <meta charset="utf-8">
     <title>Salmon Cookie Shops</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/stylesheet.css">
   </head>
+
   <body>
+    <header id='index-header'>
+      <h1 id='index-header-title'>Pat's Salmon Cookie Shops</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#index-main-content">About</a></li>
+          <li><a href="sales.html">Sales</a></li>
+          <li><a href="style.html">Style</a></li>
+        </ul>
+      </nav>
+    </header>
     <form id="addStoreForm">
-      Shop Name:
-      <input type="text" id="shopNameInput" value="New Shop"><br>
-      Minimum customers per hour:
-      <input type="text" id="minCustomersPerHourInput" value="10"><br>
-      Maximum customers per hour:
-      <input type="text" id="maxCustomersPerHourInput" value="100"><br>
-      Average cookies per customer:
-      <input type="text" id="averageCookiesPerCustomerInput" value="5.2"><br>
-      <button type="submit" id="addStoreButton" name="button">Add a new store!</button>
+      <fieldset><legend><h3>Add a new store here</h3></legend>
+        <label>Shop Name: </label><input type="text" id="shopNameInput" placeholder="New Shop"><br>
+        <label>Minimum customers per hour: </label><input type="text" id="minCustomersPerHourInput" placeholder="10"><br>
+        <label>Maximum customers per hour: </label><input type="text" id="maxCustomersPerHourInput" placeholder="100"><br>
+        <label>Average cookies per customer: </label><input type="text" id="averageCookiesPerCustomerInput" placeholder="5.2"><br>
+        <button type="submit" id="addStoreButton" name="button">Add a new store!</button>
+      </fieldset>
     </form>
     <section id='store-data'>
     </section>
