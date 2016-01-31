@@ -148,7 +148,12 @@ td {
   padding: 2%;
   margin: auto;
 }
-
+a {
+  color: #AA5835;
+}
+a:visited {
+  color: #AA5835;
+}
 nav {
   padding: 1% 0%;
 }

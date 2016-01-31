@@ -142,6 +142,7 @@ function clickToEdit() {
       if (shops[shop].shopName === event.target.parentNode.childNodes[0].textContent) {
         if (event.target.cellIndex === 0) {
           shops[shop].shopName = newValue;
+          shopNames[shop] = newValue;
         } else if (event.target.cellIndex === 1) {
           shops[shop].minCustomers = parseInt(newValue);
         } else if (event.target.cellIndex === 2) {

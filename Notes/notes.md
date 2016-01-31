@@ -60,3 +60,6 @@ we have a box that is a web page
 
 Column widths
 Gutters between columns
+
+
+Skeleton - supposed to apply container class to header, main, and footer
