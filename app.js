@@ -94,7 +94,9 @@ function createTable(tableTitle, tableId, parentElement, columnTitleArray, rowTi
   createElAndAppend('h3', tableTitle, parentElement);
   var tableEl = document.createElement('table');
   tableEl.setAttribute('id', tableId)
-  tableEl.appendChild(createRow('th',tableTitle,columnTitleArray));
+  var theadEl = document.createElement('thead');
+  theadEl.appendChild(createRow('th','',columnTitleArray));
+  tableEl.appendChild(theadEl);
   for (var i = 0; i < arrayOfRowData.length; i++) {
     tableEl.appendChild(createRow('td', rowTitleArray[i], arrayOfRowData[i]));
     }
@@ -106,7 +108,7 @@ function renderTables() {
   storeSectionEl.innerHTML = '';
   customerSectionEl.innerHTML = '';
   cookieSectionEl.innerHTML = '';
-  createTable('Stores (click to edit)', 'store-table', storeSectionEl, storeAttributes, shopNames, arrayOfStoreData);
+  createTable('Stores (click to edit store info)', 'store-table', storeSectionEl, storeAttributes, shopNames, arrayOfStoreData);
   createTable('Customers', 'customer-table', customerSectionEl, columnHeaders, shopNames, arrayOfCustomerData);
   createTable('Cookies', 'cookie-table', cookieSectionEl, columnHeaders, shopNames, arrayOfCookieData);
   clickToEdit()
@@ -134,7 +136,8 @@ function addNewStoreForm() {
 function clickToEdit() {
   var storeTableEl = document.getElementsByTagName('table')[0];
   storeTableEl.addEventListener('click', function() {
-    var newValue = prompt("Enter a new value for " + event.target.parentNode.childNodes[0].textContent +" " + event.target.parentNode.parentNode.childNodes[0].childNodes[event.target.cellIndex].textContent)
+    console.log(event);
+    var newValue = prompt("Enter a new value for " + event.target.parentNode.childNodes[0].textContent +" " + event.target.parentNode.parentNode.childNodes[0].childNodes[0].childNodes[event.target.cellIndex].textContent)
     for (shop in shops) {
       if (shops[shop].shopName === event.target.parentNode.childNodes[0].textContent) {
         if (event.target.cellIndex === 0) {
