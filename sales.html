@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Salmon Cookie Shops</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <form id="addStoreForm">
+      Shop Name:
+      <input type="text" id="shopNameInput" value="New Shop"><br>
+      Minimum customers per hour:
+      <input type="text" id="minCustomersPerHourInput" value="10"><br>
+      Maximum customers per hour:
+      <input type="text" id="maxCustomersPerHourInput" value="100"><br>
+      Average cookies per customer:
+      <input type="text" id="averageCookiesPerCustomerInput" value="5.2"><br>
+      <button type="submit" id="addStoreButton" name="button">Add a new store!</button>
+    </form>
+    <section id='store-data'>
+    </section>
+    <section id='customer-data'>
+    </section>
+    <section id='cookie-data'>
+    </section>
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>
